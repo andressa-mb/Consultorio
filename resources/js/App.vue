@@ -1,0 +1,27 @@
+<template>
+<div class="container-fluid">
+    <div class="row">
+        <header class="col-md-12">
+            <Navbar></Navbar>
+        </header>
+
+        <main class="col-md-12">
+            <h2 class="text-center m-2">Consultório</h2>
+            <router-view />
+        </main>
+
+        <footer class="col-md-12" >
+            <div class="row">
+                <p class="col-md-12 text-center mt-5">Copyright Consultorio © 2026 by Andressa.</p>
+            </div>
+        </footer>
+    </div>
+</div>
+</template>
+
+<script setup>
+
+import Navbar from '@/components/nav/Navbar.vue';
+
+
+</script>
