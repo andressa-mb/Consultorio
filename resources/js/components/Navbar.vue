@@ -6,7 +6,7 @@
             <router-link to="/" class="nav-link">Início</router-link>
         </li>
         <li class="nav-item">
-            <router-link to="/others" class="nav-link" :style="{'color': color.primaryColor}">Outros</router-link>
+            <router-link to="/others" class="nav-link">Outros</router-link>
         </li>
         <li class="nav-item">
             <router-link to="/users" class="nav-link">Usuários</router-link>
@@ -18,17 +18,17 @@
             </a>
 
             <ul class="dropdown-menu" >
-                <li>
+                <li v-if="!auth.isAuth">
                     <router-link to="/login-sys" class="dropdown-item pl-2">Login</router-link>
                 </li>
-                <li>
+                <li v-if="!auth.isAuth">
                     <router-link to="/register" class="dropdown-item pl-2">Registro</router-link>
                 </li>
-                <li>
+                <li v-if="auth.isAuth">
                     <router-link to="/config" class="dropdown-item pl-2" >Configs</router-link>
                 </li>
-                <li>
-                    <router-link to="/" class="dropdown-item pl-2">Logout</router-link>
+                <li v-if="auth.isAuth">
+                    <router-link to="/" class="dropdown-item pl-2" @click.prevent="logout">Logout</router-link>
                 </li>
             </ul>
         </li>
@@ -39,6 +39,17 @@
 </template>
 
 <script setup>
+import { useAuthStore } from '@/libs/store/auth';
+import api from '@/libs/axios/index';
+
+const auth = useAuthStore();
+
+function logout() {
+    api.post('/logout')
+      .then(() => {
+        auth.logout();
+    });
+}
 
 
 </script>
