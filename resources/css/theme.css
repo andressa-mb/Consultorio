@@ -1,0 +1,19 @@
+:root {
+  --color-primary: #ffffff;
+  --color-secondary: #000000;
+  --color-bg: #d4d4d4;
+  --color-text: #212529;
+
+  --navbar-height: 64px;
+  --border-radius: 6px;
+
+  --theme-light-primary: #ffffff;
+  --theme-light-secondary: #000000;
+  --theme-light-bg: #d4d4d4;
+  --theme-light-text: #212529;
+
+  --theme-dark-primary: #000000;
+  --theme-dark-secondary: #ffffff;
+  --theme-dark-bg: #9c8787;
+  --theme-dark-text: #ffffff;
+}

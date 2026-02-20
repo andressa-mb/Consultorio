@@ -1,0 +1,13 @@
+
+.navbar-custom {
+    background-color: var(--color-primary);
+    box-shadow: 2px 4px 8px var(--color-secondary);
+    border: 1px solid var(--color-secondary);
+    border-radius: 15px 15px 15px 50px;
+}
+
+.navbar-custom .textMenu{
+    color: var(--color-text) !important;
+
+}
+
