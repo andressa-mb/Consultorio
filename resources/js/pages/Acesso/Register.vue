@@ -61,7 +61,11 @@ let form = reactive({
 
 const fecharModalMsg = () => {
     openModalMsg.value = false;
-    router.push('/login-sys');
+    if(auth.authCheck){
+        router.push('/users')
+    }else {
+        router.push('/login-sys');
+    }
 }
 
 async function sendData() {

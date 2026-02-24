@@ -17,6 +17,10 @@ export const useColorStore = defineStore('colors', {
         setColors(primary, secondary) {
             this.primary = primary;
             this.secondary = secondary;
+        },
+        defaultColors() {
+            this.primary = '0080ff',
+            this.secondary = '#ffff80'
         }
     },
 });

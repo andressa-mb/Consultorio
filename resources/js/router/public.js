@@ -1,4 +1,4 @@
-import Index from '@/pages/public/Index.vue';
+import Index from '@/pages/Index.vue';
 import Login from '@/pages/Acesso/Login.vue';
 import Register from '@/pages/Acesso/Register.vue';
 

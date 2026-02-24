@@ -7,6 +7,7 @@
 
         <main class="col-md-12">
             <h2 class="text-center m-2">Consultório</h2>
+            {{ auth.authCheck }}
             <router-view />
         </main>
 

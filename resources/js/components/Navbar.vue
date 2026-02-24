@@ -1,7 +1,6 @@
 <template>
 <div class="row">
     <ul class="col-md-12 nav nav-tabs d-flex justify-content-end p-0" :style="{'background-color': color.primaryColor, 'color': color.secondaryColor}">
-
         <li class="nav-item form-check form-switch m-2">
             <input class="form-check-input" type="checkbox" role="switch" id="theme" v-on:change="colorTheme">
             <label class="form-check-label" for="theme">
@@ -10,16 +9,11 @@
         </li>
         <li class="nav-item" :style="{'background-color': color.secondaryColor}">
             <router-link to="/" class="nav-link" :style="{'color': color.primaryColor}">
-                Início
+                {{ auth.isAuth ? "Home" : "Início"}}
             </router-link>
         </li>
         <li v-if="auth.isAuth" class="nav-item" :style="{'background-color': color.secondaryColor}">
-            <router-link to="/" class="nav-link" :style="{'color': color.primaryColor}">
-                Outros
-            </router-link>
-        </li>
-        <li v-if="auth.isAuth" class="nav-item" :style="{'background-color': color.secondaryColor}">
-            <router-link to="/" class="nav-link" :style="{'color': color.primaryColor}">
+            <router-link to="/users" class="nav-link" :style="{'color': color.primaryColor}">
                 Usuários
             </router-link>
         </li>
@@ -52,10 +46,6 @@
             </ul>
         </li>
     </ul>
-</div>
-
-<div>
-    auth: {{ auth.isAuth }}
 </div>
 </template>
 

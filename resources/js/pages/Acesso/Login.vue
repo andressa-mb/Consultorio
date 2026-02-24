@@ -36,7 +36,9 @@ import { onMounted, reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import api from '@/libs/axios/index';
 import ModalMessage from '@/components/modal/Message.vue';
+import { useAuthStore } from '@/libs/store/auth';
 
+const auth = useAuthStore();
 const openModalMsg = ref(false);
 const textModal = ref('');
 const titleModal = ref('');
@@ -57,7 +59,8 @@ const login = async () => {
     })
     .then(({data}) => {
         console.log('response login:', data);
-        router.push('/home');
+        auth.isAuth = true;
+        router.push('/');
     })
     .catch((error) => {
         titleModal.value = 'Erro';
