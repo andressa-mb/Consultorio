@@ -20,8 +20,20 @@
 </template>
 
 <script setup>
-
 import Navbar from '@/components/Navbar.vue';
+import { useAuthStore } from '@/libs/store/auth.js';
+import { onMounted } from 'vue';
+import api from '@/libs/axios/index.js';
 
+const auth = useAuthStore();
+
+onMounted(() => {
+    api.get('me').then(({data}) => {
+        auth.login(data);
+    }).catch(() => {
+        console.log('não tem usuario logado')
+    })
+});
 
 </script>
+

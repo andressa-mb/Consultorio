@@ -13,13 +13,13 @@
                 Início
             </router-link>
         </li>
-        <li class="nav-item" :style="{'background-color': color.secondaryColor}">
-            <router-link to="/others" class="nav-link" :style="{'color': color.primaryColor}">
+        <li v-if="auth.isAuth" class="nav-item" :style="{'background-color': color.secondaryColor}">
+            <router-link to="/" class="nav-link" :style="{'color': color.primaryColor}">
                 Outros
             </router-link>
         </li>
-        <li class="nav-item" :style="{'background-color': color.secondaryColor}">
-            <router-link to="/users" class="nav-link" :style="{'color': color.primaryColor}">
+        <li v-if="auth.isAuth" class="nav-item" :style="{'background-color': color.secondaryColor}">
+            <router-link to="/" class="nav-link" :style="{'color': color.primaryColor}">
                 Usuários
             </router-link>
         </li>
@@ -52,6 +52,10 @@
             </ul>
         </li>
     </ul>
+</div>
+
+<div>
+    auth: {{ auth.isAuth }}
 </div>
 </template>
 
@@ -87,6 +91,4 @@ function logout() {
         auth.logout();
     });
 }
-
-
 </script>

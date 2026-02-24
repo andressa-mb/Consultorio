@@ -28,36 +28,26 @@
 <div class="row justify-content-center">
     <ModalMessage v-if="openModalMsg" :title="titleModal" :text="textModal" @fechar="fecharModalMsg"/>
 </div>
+
 </template>
 
 <script setup>
 import { onMounted, reactive, ref } from 'vue';
-import { useRouter } from 'vue-router'
-import { useAuthStore } from '@/libs/store/auth';
+import { useRouter } from 'vue-router';
 import api from '@/libs/axios/index';
 import ModalMessage from '@/components/modal/Message.vue';
 
-const router = useRouter();
 const openModalMsg = ref(false);
 const textModal = ref('');
 const titleModal = ref('');
-const logado = ref(false);
-const auth = useAuthStore();
-
-const fecharModalMsg = () => {
-    openModalMsg.value = false;
-    accessUser();
-}
-
+const router = useRouter();
 const form = reactive({
     email: '',
     password: '',
 });
 
-function accessUser() {
-    if(logado.value){
-        router.push({name: 'page'});
-    }
+const fecharModalMsg = () => {
+    openModalMsg.value = false;
 }
 
 const login = async () => {
@@ -66,16 +56,12 @@ const login = async () => {
         password: form.password
     })
     .then(({data}) => {
-        logado.value = true;
-        titleModal.value = 'Login';
-        textModal.value = data.message;
-        openModalMsg.value = true;
-        auth.login(data.user);
+        console.log('response login:', data);
+        router.push('/home');
     })
     .catch((error) => {
         titleModal.value = 'Erro';
-        textModal.value = `Erro ao logar usuário. ${error.request.statusText} - ${error.request.status}` ;
-        logado.value = false;
+        textModal.value = `Erro ao logar usuário. ${error}` ;
         openModalMsg.value = true;
     });
 }
