@@ -12,7 +12,7 @@
                 {{ auth.isAuth ? "Home" : "Início"}}
             </router-link>
         </li>
-        <li v-if="auth.isAuth" class="nav-item" :style="{'background-color': color.secondaryColor}">
+        <li v-if="auth.isAuth && auth.user?.employee" class="nav-item" :style="{'background-color': color.secondaryColor}">
             <router-link to="/users" class="nav-link" :style="{'color': color.primaryColor}">
                 Usuários
             </router-link>

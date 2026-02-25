@@ -16,7 +16,21 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return User::paginate();
+    }
+
+    public function listUsers()
+    {
+        return response()->json([
+            'users' => User::where('employee', false)->paginate(3)
+        ]);
+    }
+
+    public function listEmployees()
+    {
+        return response()->json([
+            'employees' => User::where('employee', true)->paginate(3)
+        ]);
     }
 
     /**
