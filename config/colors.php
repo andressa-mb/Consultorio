@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'primaryColor' => '#4fff4f',
-    'secondaryColor' => '#fe7878',
+    'primaryColor' => '#0080ff',
+    'secondaryColor' => '#ffff80',
 ];

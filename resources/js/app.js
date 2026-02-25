@@ -4,11 +4,12 @@ import 'bootstrap';
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import router from '@/router/index';
-//import '../css/theme.css';
-import App from '@/App.vue';
+import AppRoot from '@/App.vue';
 
 const pinia = createPinia();
-createApp(App)
-.use(router)
+
+createApp(AppRoot)
 .use(pinia)
-.mount('#app');
+.use(router)
+.mount('#app')
+
