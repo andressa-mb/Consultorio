@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('gender');
+            $table->date('birthday');
             $table->string('telephone', 30)->nullable();
             $table->string('cellphone', 30);
             $table->string('cpf', 11);
