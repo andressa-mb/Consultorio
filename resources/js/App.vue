@@ -7,7 +7,7 @@
 
         <main class="col-md-12">
             <h2 class="text-center m-2">Consultório</h2>
-            {{ auth.authCheck }}
+            Usuário logado: <br> {{ auth.loggedUser }} <hr>
             <router-view />
         </main>
 
@@ -23,17 +23,25 @@
 <script setup>
 import Navbar from '@/components/Navbar.vue';
 import { useAuthStore } from '@/libs/store/auth.js';
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
 import api from '@/libs/axios/index.js';
 
 const auth = useAuthStore();
 
-onMounted(() => {
-    api.get('me').then(({data}) => {
+watch(() => auth.isAuth, () => {
+    getUser();
+});
+
+async function getUser() {
+    await api.get('me').then(({data}) => {
         auth.login(data);
     }).catch(() => {
         console.log('não tem usuario logado')
     })
+}
+
+onMounted(() => {
+    getUser();
 });
 
 </script>
