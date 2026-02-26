@@ -11,7 +11,7 @@ class Person extends Model
     protected $table = 'people';
 
     protected $fillable = [
-        'name', 'surname', 'user_id', 'address_id', 'gender', 'telephone', 'cellphone', 'cpf', 'active'
+        'name', 'surname', 'user_id', 'address_id', 'birthday', 'gender', 'telephone', 'cellphone', 'cpf', 'active'
     ];
 
     public function user(): HasOne {
