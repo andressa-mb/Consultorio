@@ -11,6 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('addresses', function(Blueprint $table) {
+            $table->id();
+            $table->string('zipcode', 8);
+            $table->string('street', 500);
+            $table->integer('number');
+            $table->string('complement', 100)->nullable();
+            $table->string('district', 100); //bairro
+            $table->string('city', 200);
+            $table->string('state', 2);
+            $table->string('type', 100); //casa, trabalho, etc
+        });
+
         Schema::create('people', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
@@ -29,6 +41,7 @@ return new class extends Migration
             $table->string('cellphone', 30);
             $table->string('cpf', 11);
             $table->boolean('active');
+            $table->boolean('health_insurance');
             $table->timestamps();
         });
     }
@@ -39,5 +52,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('people');
+        Schema::dropIfExists('addresses');
     }
 };

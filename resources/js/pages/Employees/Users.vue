@@ -22,14 +22,14 @@
                     </svg>
                 </div>
 
-            <!--<div class="col">
-                    <router-link :to="{ name: 'form-data-user', params: { isEmployee: client.employee, userId: client.id }}" class="btn btn-outline-dark me-2">
+                <div class="col">
+                    <router-link :to="{ name: 'form-user', params: { isEmployee: client.employee, userId: client.id }}" class="btn btn-outline-dark me-2">
                         Editar Router
                     </router-link>
                     <button class="btn btn-outline-dark" type="button">
                         Add dependente
                     </button>
-                </div> -->
+                </div>
             </div>
         </div>
 

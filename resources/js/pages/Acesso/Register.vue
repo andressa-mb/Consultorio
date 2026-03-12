@@ -17,7 +17,7 @@
             <label for="password_confirmation" class="form-label">Confirmar Senha</label>
             <input type="password" class="form-control" id="password_confirmation" v-model="form.password_confirmation">
         </div>
-        <div class="form-check my-3">
+        <div class="form-check my-3" v-if="auth.authCheck">
             <input type="checkbox" class="form-check-input" id="isEmployee" v-model="form.employee">
             <label class="form-check-label" for="isEmployee">Funcionário?</label>
         </div>
@@ -32,10 +32,10 @@
 <div class="row">
     <div class="col-md-6">
         <p>Dados do form</p>
-        {{ form.employee }} <br>
-        {{ form.email }} <br>
-        {{ form.password }} <br>
-        {{ form.password_confirmation }} <br>
+        Func: {{ form.employee }} <br>
+        Email: {{ form.email }} <br>
+        Senha: {{ form.password }} <br>
+        Confirma Senha: {{ form.password_confirmation }} <br>
     </div>
 </div>
 </template>
@@ -52,6 +52,7 @@ const auth = useAuthStore();
 const openModalMsg = ref(false);
 const textModal = ref('');
 const titleModal = ref('');
+const hasError = ref(false);
 
 let form = reactive({
     employee: false,
@@ -61,12 +62,18 @@ let form = reactive({
 })
 
 const fecharModalMsg = () => {
-    openModalMsg.value = false;
-    if(auth.authCheck){
-        router.push('/users')
-    }else {
-        router.push('/login-sys');
+    if(hasError.value){
+        hasError.value = false;
+        form.email = '';
+        form.password = '';
+        form.password_confirmation = '';
+    } else if(!hasError.value && auth.authCheck) {
+        router.push('home')
+    } else {
+        router.push('login-sys')
     }
+
+    openModalMsg.value = false;
 }
 
 async function sendData() {
@@ -88,7 +95,7 @@ async function sendData() {
         } else {
             textModal.value = "Erro inesperado no servidor.";
         }
-
+        hasError.value = true;
         titleModal.value = "ERRO";
         openModalMsg.value = true;
         console.log('erro ao cadastrar', error);
